@@ -22,5 +22,16 @@ module Cis196FinalProject
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # configure logger
+    config.logger = Logger.new('log/dev.log')
+    config.logger.formatter = proc do |severity, datetime, progname, msg|
+      date_format = datetime.strftime("%Y-%m-%d %H:%M:%S")
+      if severity == "INFO" or severity == "WARN"
+        "[#{date_format}] #{severity}  (#{progname}): #{msg}\n"
+      else        
+        "[#{date_format}] #{severity} (#{progname}): #{msg}\n"
+      end
+    end
   end
 end
