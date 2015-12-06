@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= form_tag(@user) do %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -8,10 +8,34 @@
         <li><%= message %></li>
       <% end %>
       </ul>
-    </div>
+		</div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+	<div class="actions">
+		<%= label_tag 'user[:username]' %>
+		<%= text_field_tag 'user[:username]', nil, placeholder: 'between 6-8 characters' %>
+
+		<%= label_tag 'user[:name]' %>
+		<%= text_field_tag 'user[:name]', nil, placeholder: 'Group or Artist name' %>
+
+		<%= label_tag 'user[:password]' %>
+		<%= password_field_tag 'user[:password]', nil, placeholder: 'Enter a password' %>
+
+		<%= label_tag :password_confirm, 'Confirm your password' %>
+		<%= password_field_tag :password_confirm, nil, placeholder: 'Confirm your password' %>
+
+		<%= label_tag 'user[:email]' %>
+		<%= text_field_tag 'user[:email]' %>
+
+		<%= label_tag 'user[:bio]' %>
+		<%= text_area_tag 'user[:bio]', nil, placeholder: 'Enter a short bio'%>
+
+		<%= label_tag 'user[:genres]' %>
+		<%= text_field_tag 'user[:genres]', nil, placeholder: 'rock, blues, jazz, ...' %>
+
+		<%= label_tag :image, 'Upload a profile picture:'  %>
+		<%= image_submit_tag 'browse' %>
+
+    <%= submit_tag 'Submit'  %>
   </div>
 <% end %>
