@@ -12,29 +12,28 @@
   <% end %>
 
 	<div class="actions">
-		<%= label_tag 'user[:username]' %>
+		<%= label_tag :username %>
 		<%= text_field_tag 'user[:username]', nil, placeholder: 'between 6-8 characters' %>
 
-		<%= label_tag 'user[:name]' %>
+		<%= label_tag :name %>
 		<%= text_field_tag 'user[:name]', nil, placeholder: 'Group or Artist name' %>
 
-		<%= label_tag 'user[:password]' %>
+		<%= label_tag :password %>
 		<%= password_field_tag 'user[:password]', nil, placeholder: 'Enter a password' %>
 
-		<%= label_tag :password_confirm, 'Confirm your password' %>
-		<%= password_field_tag :password_confirm, nil, placeholder: 'Confirm your password' %>
+		<%= label_tag :confirm_password %>
+		<%= password_field_tag :password_confirmation, nil, placeholder: 'Confirm your password' %>
 
-		<%= label_tag 'user[:email]' %>
+		<%= label_tag :email %>
 		<%= text_field_tag 'user[:email]' %>
 
-		<%= label_tag 'user[:bio]' %>
+		<%= label_tag :bio %>
 		<%= text_area_tag 'user[:bio]', nil, placeholder: 'Enter a short bio'%>
 
-		<%= label_tag 'user[:genres]' %>
+		<%= label_tag :genres %>
 		<%= text_field_tag 'user[:genres]', nil, placeholder: 'rock, blues, jazz, ...' %>
 
 		<%= label_tag :image, 'Upload a profile picture:'  %>
-		<%= image_submit_tag 'browse' %>
 
     <%= submit_tag 'Submit'  %>
   </div>

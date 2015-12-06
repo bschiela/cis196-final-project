@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    render :'users/new.html'
+    render :new
   end
 
   # GET /users/1/edit
@@ -31,17 +31,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    password_confirmed = (params[:password] == param[:password_confirm])
+    password_confirmed = (params[:user][:password] == params[:password_confirmation])
 
     if @user.save && password_confirmed
       session[:user_id] = @user.id
       redirect_to @user, notice: 'User was successfully created.'
     else
       if (!password_confirmed)
-        @user.errors.add(:password, 'fields do not match')
-        @user.errors.add(:password_confirm, 'fields do not match')
+        @user.errors.add(:password_confirmation, 'fields do not match')
       end
-
       render :new
     end
   end
