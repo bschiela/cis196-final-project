@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Party Cat Records</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <link rel="stylesheet" href="assets/css/main.css"/>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+  	<title>Party Cat Records</title>
+  	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  	<link rel='stylesheet' href='assets/css/main.css'/>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  	<%= csrf_meta_tags %>
+	</head>
 
-<%= render 'layouts/nav' %>
-
-<%= yield %>
-
-</body>
+	<body>
+		<%= render 'layouts/header' %>
+		<%= render 'layouts/nav' %>
+		<%= yield %>
+		<%= render 'layouts/footer' %>
+	</body>
 </html>

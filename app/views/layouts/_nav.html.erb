@@ -1,6 +1,6 @@
 <nav id='nav'>
 	<ul class='links'>
-		<li><a href='index.html'>Home</a></li>
+		<li><a href='/'>Home</a></li>
 		<% if logged_in? %>
 			<li><a href=<%= "/users/#{current_user.d}" %>>My Profile</a></li>
 			<li><a href='/logout' data-method='delete'>Log Out</a></li>
@@ -10,3 +10,8 @@
 		<% end %>
 	</ul>
 </nav>
+<!-- Scripts for Menu Interactivity -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>

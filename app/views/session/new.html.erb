@@ -1,0 +1,10 @@
+<div class='container'>
+	<h2>Log In</h2>
+	<%= form_tag('/login') do %>
+		<%= label_tag :username %>
+		<%= text_field_tag :username, nil, placeholder: 'Enter your username' %>
+		<%= label_tag :password %>
+		<%= password_field_tag :password, nil, placeholder: 'Enter your password' %>
+		<%= submit_tag 'Log in' %>
+	<% end %>
+</div>
