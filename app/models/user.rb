@@ -1,5 +1,3 @@
-require 'bcrypt'
-
 class User < ActiveRecord::Base
   # validations
   validates :username, presence: true, uniqueness: true, length: { minimum: 4, maximum: 15 }
@@ -17,5 +15,7 @@ class User < ActiveRecord::Base
   def password=(new_password)
     @password = Password.create(new_password)
     self.password_hash = @password
+
+    logger.debug("new password hashed: { #{new_password} => #{@password} }") # TODO: remove
   end
 end
