@@ -32,6 +32,9 @@ gem 'puma'
 # Use BCrypt for password hashing
 gem 'bcrypt'
 
+# Use Pry for debugging
+gem 'pry'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
