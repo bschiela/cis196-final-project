@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
     password_confirmed = (params[:user][:password] == params[:password_confirmation])
 
-    logger.debug "saving new user: #{p @user}"
+    logger.debug "saving new User: #{@user.attributes.inspect}"
     if @user.save && password_confirmed
       session[:user_id] = @user.id
       redirect_to @user, notice: 'User was successfully created.'
