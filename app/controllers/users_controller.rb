@@ -33,6 +33,7 @@ class UsersController < ApplicationController
 
     password_confirmed = (params[:user][:password] == params[:password_confirmation])
 
+    logger.debug "saving new user: #{p @user}"
     if @user.save && password_confirmed
       session[:user_id] = @user.id
       redirect_to @user, notice: 'User was successfully created.'
@@ -71,6 +72,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:username, :name, :email, :bio, :genres)
+    params.require(:user).permit(:username, :name, :password, :email, :bio, :genres)
   end
 end

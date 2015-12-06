@@ -13,25 +13,25 @@
 
 	<div class="actions">
 		<%= label_tag :username %>
-		<%= text_field_tag 'user[:username]', nil, placeholder: 'between 6-8 characters' %>
+		<%= text_field_tag 'user[username]', @user.username, placeholder: 'e.g. myusername' %>
 
 		<%= label_tag :name %>
-		<%= text_field_tag 'user[:name]', nil, placeholder: 'Group or Artist name' %>
+		<%= text_field_tag 'user[name]', @user.name, placeholder: 'e.g. The Beatles' %>
 
 		<%= label_tag :password %>
-		<%= password_field_tag 'user[:password]', nil, placeholder: 'Enter a password' %>
+		<%= password_field_tag 'user[password]', nil %>
 
 		<%= label_tag :confirm_password %>
-		<%= password_field_tag :password_confirmation, nil, placeholder: 'Confirm your password' %>
+		<%= password_field_tag :password_confirmation, nil %>
 
 		<%= label_tag :email %>
-		<%= text_field_tag 'user[:email]' %>
+		<%= text_field_tag 'user[email]', @user.email, placeholder: 'e.g. email@gmail.com' %>
 
 		<%= label_tag :bio %>
-		<%= text_area_tag 'user[:bio]', nil, placeholder: 'Enter a short bio'%>
+		<%= text_area_tag 'user[bio]', @user.bio, placeholder: 'Enter a short bio'%>
 
 		<%= label_tag :genres %>
-		<%= text_field_tag 'user[:genres]', nil, placeholder: 'rock, blues, jazz, ...' %>
+		<%= text_field_tag 'user[genres]', @user.genres, placeholder: 'e.g. rock, blues, jazz, ...' %>
 
 		<%= label_tag :image, 'Upload a profile picture:'  %>
 
