@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :users
   post '/users/:id' => 'users#update' # form_tag won't send PATCH/PUT on edit
 
+  resources :sounds
+
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/logout' => 'session#destroy'
