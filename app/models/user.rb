@@ -1,6 +1,12 @@
 class User < ActiveRecord::Base
   # profile picture
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/person-placeholder.jpg"
+  has_attached_file :image,
+    styles: { medium: "300x300>", thumb: "100x100>" },
+    default_url: "/images/person-placeholder.jpg",
+    :storage => :s3,
+    :s3_credentials => :'/config/credentials.yaml',
+    :path => :'user_images',
+    :bucket => :partycat
   # Validate content type
   validates_attachment_content_type :image, content_type: /\Aimage/
   # Validate filename

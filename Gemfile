@@ -35,8 +35,11 @@ gem 'bcrypt'
 # Use Pry for debugging
 gem 'pry'
 
-# Use Paperclip for image uploading
+# Use Paperclip for file uploading
 gem 'paperclip', '~> 4.3'
+
+# Use Amazon S3 for file storage
+gem 'aws-sdk', '>= 2.0.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
