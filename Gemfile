@@ -39,7 +39,10 @@ gem 'pry'
 gem 'paperclip', '~> 4.3'
 
 # Use Amazon S3 for file storage
-gem 'aws-sdk', '>= 2.0.0'
+gem 'aws-sdk', '< 2.0.0' # versions >= 3.0 have "Name error: uninitialized constant Paperclip::Storage::S3:AWS"
+
+# Use Dotenv to store aws credentials in environment variables
+gem 'dotenv-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

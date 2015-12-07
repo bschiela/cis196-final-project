@@ -11,16 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205213402) do
+ActiveRecord::Schema.define(version: 20151207205427) do
+
+  create_table "sounds", force: :cascade do |t|
+    t.string   "name"
+    t.string   "genre"
+    t.string   "description"
+    t.integer  "user_id_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "sounds", ["user_id_id"], name: "index_sounds_on_user_id_id"
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "name"
-    t.string "password_hash"
-    t.string "email"
-    t.string "bio"
-    t.string "genres"
-    t.string "image_url"
+    t.string   "username"
+    t.string   "name"
+    t.string   "password_hash"
+    t.string   "email"
+    t.string   "bio"
+    t.string   "genres"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
 end

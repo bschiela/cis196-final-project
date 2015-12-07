@@ -76,6 +76,6 @@ class UsersController < ApplicationController
 
   # password must be confirmed in form
   def password_confirmed?
-    params[:user][:password] == params[:password_confirmation]
+    params[:user][:password] == params[:user][:password_confirmation]
   end
 end
