@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :bio
       t.string :genres
-      t.string :image_url
     end
   end
 end

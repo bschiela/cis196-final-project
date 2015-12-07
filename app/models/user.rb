@@ -1,4 +1,11 @@
 class User < ActiveRecord::Base
+  # profile picture
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/person-placeholder.jpg"
+  # Validate content type
+  validates_attachment_content_type :image, content_type: /\Aimage/
+  # Validate filename
+  validates_attachment_file_name :image, matches: [/png\Z/, /jpe?g\Z/]
+
   # validations
   validates :username, presence: true, uniqueness: true, length: { minimum: 4, maximum: 15 }
   validates :name, presence: true
