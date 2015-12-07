@@ -1,11 +1,11 @@
 <%= form_tag(@user) do %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h1><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h1>
 
       <ul>
       <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+				<li><font color=red><%= message %></font></li>
       <% end %>
       </ul>
 		</div>
