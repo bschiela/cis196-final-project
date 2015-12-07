@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    redirect_to '/'
+    @users = User.all
+    render :index
   end
 
   # GET /users/1
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
     password_confirmed = (params[:user][:password] == params[:password_confirmation])
 
     logger.debug "saving new User: #{@user.attributes.inspect}"
-    if @user.save && password_confirmed
+    if password_confirmed && @user.save
       session[:user_id] = @user.id
       redirect_to @user, notice: 'User was successfully created.'
     else
