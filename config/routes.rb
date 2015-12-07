@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :users
-  post '/users/:id' => 'users#update' # form_tag won't send PATCH/PUT on edit
 
   resources :sounds
 

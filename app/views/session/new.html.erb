@@ -3,11 +3,13 @@
 	<p id="error"><font color=red><%= notice %></font></p>
 
 	<h2>Log In</h2>
-	<%= form_tag('/login') do %>
-		<%= label_tag :username %>
-		<%= text_field_tag :username, nil, placeholder: 'Enter your username' %>
-		<%= label_tag :password %>
-		<%= password_field_tag :password, nil, placeholder: 'Enter your password' %>
-		<%= submit_tag 'Log in' %>
+	<%= form_for('/login') do |f| %>
+		<%= f.label :username %>
+		<%= f.text_field :username, placeholder: 'Enter your username' %>
+
+		<%= f.label :password %>
+		<%= f.password_field :password, placeholder: 'Enter your password' %>
+
+		<%= f.submit 'Log in' %>
 	<% end %>
 </div>
