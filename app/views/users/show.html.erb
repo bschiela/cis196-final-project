@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<br/>
+<p id="notice"><font color=green><%= notice %></font></p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="container">
+	<h2><%= @user.name %></h2>
+	<h5><%= @user.genres %></h5>
+	<p><%= @user.bio %></p>
+</div>
