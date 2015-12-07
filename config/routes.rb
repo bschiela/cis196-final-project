@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/logout' => 'session#destroy'
+  get '/logout' => 'session#destroy' # for some reason, sign-out link won't send 'delete' request from nav-bar
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
