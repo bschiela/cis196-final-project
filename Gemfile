@@ -35,6 +35,9 @@ gem 'bcrypt'
 # Use Pry for debugging
 gem 'pry'
 
+# Use Paperclip for image uploading
+gem 'paperclip'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
