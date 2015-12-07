@@ -36,7 +36,7 @@ gem 'bcrypt'
 gem 'pry'
 
 # Use Paperclip for image uploading
-gem 'paperclip'
+gem 'paperclip', '~> 4.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

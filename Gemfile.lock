@@ -164,7 +164,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
-  paperclip
+  paperclip (~> 4.3)
   pry
   puma
   rails (= 4.2.5)
