@@ -1,5 +1,4 @@
-# TODO: more rigorous validations / ensure error messages properly display
-# TODO: separate edit forms for changing password/editing content/signing up/changing & deleting profile picture (link image)
 # TODO: homepage view once content uploaded
 # TODO: general layout and design formatting/tweaking
-# TODO: limit editing to current_user and related objects
+# TODO: more rigorous validations / ensure error messages properly display
+# TODO: separate edit forms for changing password/editing content/signing up/changing & deleting profile picture (link image)?
