@@ -1,4 +1,12 @@
-<%= form_for(:sound, url: user_sounds_path(current_user)) do |f| %>
+<% if @sound.id %>
+	<% verb = :patch %>
+	<% route = user_sound_path(@sound.user.id, @sound.id) %>
+<% else %>
+	<% verb = :post %>
+	<% route = user_sounds_path(current_user) %>
+<% end %>
+
+<%= form_for(:sound, { method: verb, url: route }) do |f| %>
   <% if @sound.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@sound.errors.count, "error") %> prohibited this sound from being saved:</h2>

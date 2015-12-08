@@ -8,9 +8,6 @@
 				<audio preload="none" controls><source src="<%= sound.audio.url %>"/></audio>
 			</td>
 			<td style="vertical-align:middle"><%= sound.description %></td>
-			<% if (@user == current_user) %>
-				<td style="vertical-align:middle"><%= button_to 'Edit', edit_user_sound_path(@user.id, sound.id), { method: 'get', class: 'button small' } %></td>
-			<% end %>
 		</tr>
 	<% end %>
 	</tbody>

@@ -1,6 +1,7 @@
-<h1>Editing Sound</h1>
+<div class='container'>
+	<h1>Editing Sound</h1>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Show', @sound %> |
-<%= link_to 'Back', sounds_path %>
+	<%= button_to 'Cancel', user_sound_path(@sound.user.id, @sound.id), { method: 'get' } %>
+</div>
