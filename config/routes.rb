@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :sounds
+    resources :playlists
   end
 
   get '/sounds' => 'browse#sounds'
