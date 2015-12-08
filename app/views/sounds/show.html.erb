@@ -12,7 +12,7 @@
 		<h5><%= @sound.genre %></h5>
 		<audio preload="auto" controls><source src="<%= @sound.audio.url %>"/></audio>
 		<p><%= @sound.description %></p>
-		<% if @user == current_user %>
+		<% if @sound.user == current_user %>
 			<%= link_to 'Edit', edit_user_sound_path(@sound.user.id, @sound.id), class: :button %><br/><br/>
 			<%= button_to 'Delete This Sound', user_sound_path, { method: :delete, class: 'button special', data: { confirm: 'Are you sure?' } } %>
 		<% end %>
