@@ -11,7 +11,8 @@
 			<h5><%= @user.genres %></h5>
 			<p><%= @user.bio %></p>
 			<% if @user == current_user %>
-				<a href=<%= edit_user_path %> class="button">Edit</a><br/><br/>
+				<%= link_to 'Edit', edit_user_path, class: :button %><br/><br/>
+				<%= button_to 'Delete My Profile', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
 			<% end %>
 		</div>
 	

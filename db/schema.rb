@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20151207205427) do
     t.string   "name"
     t.string   "genre"
     t.string   "description"
-    t.integer  "user_id_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "sounds", ["user_id_id"], name: "index_sounds_on_user_id_id"
+  add_index "sounds", ["user_id"], name: "index_sounds_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

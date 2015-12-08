@@ -2,17 +2,14 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
-  # GET /users.json
   def index
     @users = User.all
     render :index
   end
 
   # GET /users/1
-  # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-    render :'users/show.html'
+    render :show
   end
 
   # GET /users/new
@@ -23,12 +20,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
-    render :'users/edit.html'
+    @user = current_user
+    render :edit
   end
 
   # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
 
@@ -37,7 +33,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user, notice: 'User was successfully created.'
     else
-      if (!password_confirmed)
+      if (!password_confirmed?)
         @user.errors.add(:password_confirmation, 'fields do not match')
       end
       render :new
@@ -45,8 +41,8 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
+    @user = current_user
     if password_confirmed? && @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
@@ -55,8 +51,8 @@ class UsersController < ApplicationController
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
+    @user = current_user
     @user.destroy
     reset_session
     redirect_to '/', notice: 'User was successfully destroyed.'
