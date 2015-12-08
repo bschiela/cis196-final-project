@@ -58,9 +58,9 @@ class SoundsController < ApplicationController
     # check user editing privileges
     def has_privilege?
       if (!logged_in?)
-        redirect_to '/login'
-      elsif (params[:user_id] != current_user.id)
-        redirect_to user_sounds_path(current_user)
+        redirect_to '/login' and return
+      elsif (params[:user_id].to_i != current_user.id)
+        redirect_to user_sounds_path(current_user) and return
       end
     end
 
