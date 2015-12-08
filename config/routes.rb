@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :sounds
   end
 
+  get '/sounds' => 'browse#sounds'
+
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/logout' => 'session#destroy'
