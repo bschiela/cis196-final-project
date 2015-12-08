@@ -1,34 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<br/>
+	<p id="notice"><font color=green><%= notice %></font></p>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @sound.name %>
-</p>
-
-<p>
-  <strong>Sound url:</strong>
-  <%= @sound.sound_url %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @sound.image_url %>
-</p>
-
-<p>
-  <strong>Genre:</strong>
-  <%= @sound.genre %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @sound.description %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @sound.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_sound_path(@sound) %> |
-<%= link_to 'Back', sounds_path %>
+<div class="row">
+	<div class="image">
+		<%= image_tag @sound.image.url %>
+	</div>
+	<div class="content">
+		<h2>"<%= @sound.name %>" by <%= link_to "#{@sound.user.name}", user_path(@sound.user) %> </h2>
+		<h5><%= @sound.genre %></h5>
+		<audio preload="auto" controls><source src="<%= @sound.audio.url %>"/></audio>
+		<p><%= @sound.description %></p>
+		<% if @user == current_user %>
+			<%= link_to 'Edit', edit_user_sound_path(@sound.user.id, @sound.id), class: :button %><br/><br/>
+			<%= button_to 'Delete This Sound', user_sound_path, { method: :delete, class: 'button special', data: { confirm: 'Are you sure?' } } %>
+		<% end %>
+	</div>
+</div>

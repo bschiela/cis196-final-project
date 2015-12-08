@@ -1,0 +1,17 @@
+<table>
+	<tbody>
+	<% @user.sounds.each do |sound| %>
+		<tr>
+			<td><%= image_tag sound.image.url, size: "80x80" %></td>
+			<td align="center" style="vertical-align:middle">
+				<%= link_to "#{sound.name}", user_sound_path(@user.id, sound.id) %><br/>
+				<audio preload="none" controls><source src="<%= sound.audio.url %>"/></audio>
+			</td>
+			<td style="vertical-align:middle"><%= sound.description %></td>
+			<% if (@user == current_user) %>
+				<td style="vertical-align:middle"><%= button_to 'Edit', edit_user_sound_path(@user.id, sound.id), { method: 'get', class: 'button small' } %></td>
+			<% end %>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

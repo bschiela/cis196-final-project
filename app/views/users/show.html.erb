@@ -12,14 +12,32 @@
 		<h5><%= @user.genres %></h5>
 		<p><%= @user.bio %></p>
 		<% if @user == current_user %>
-			<%= link_to 'Edit', edit_user_path, class: :button %><br/><br/>
-			<%= button_to 'Delete My Profile', @user, { method: :delete, class: 'button special', data: { confirm: 'Are you sure?' } } %>
+		<div class="row">
+			<%= link_to 'Edit', edit_user_path(@user), class: :button %>
+			<%= button_to 'Delete My Profile', @user, { method: :delete, data: { confirm: 'Are you sure?' } } %>
+		</div>
 		<% end %>
 	</div>
 </div>
 
-<div class="container">
 <% if @user == current_user %>
-	<%= button_to 'Add a Sound', new_user_sound_path(@user), method: :get %>
-<% end %>
+<div class="row">
+	<%= button_to 'New Sound', new_user_sound_path(@user), method: :get %>
+	<%= button_to 'New Playlist', '#', method: :get %>
+	<%= button_to 'New Event', '#', method: :get %>
+	<%= button_to 'New Story', '#', method: :get %>
 </div>
+<% end %>
+
+<div class="row">
+	<%= button_to 'Sounds', user_sounds_path(@user), { method: :get, class: :'button special' } %>
+	<%= button_to 'Playlists', '#', { method: :get, class: :'button special' } %>
+	<%= button_to 'Calendar', '#', { method: :get, class: :'button special' } %>
+	<%= button_to 'News', '#', { method: :get, class: :'button special' } %>
+</div>
+
+<% if (defined? content) %>
+	<div class="container">
+		<%= render content %>
+	</div>
+<% end %>

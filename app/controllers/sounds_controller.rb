@@ -3,8 +3,8 @@ class SoundsController < ApplicationController
 
   # GET /users/:user_id/sounds
   def index
-    @sounds = User.find(params[:user_id]).sounds
-    render :index
+    @user = User.find(params[:user_id])
+    render 'users/show.html', locals: { content: 'user_sounds' }
   end
 
   # GET /users/:user_id/sounds/:id
@@ -28,9 +28,9 @@ class SoundsController < ApplicationController
     @sound = Sound.new(sound_params)
     @sound.user = current_user
 
-    logger.debug "saving new Sound: #{@sound.attributes.inspect}"
+    logger.debug "SAVING NEW SOUND: #{@sound.attributes.inspect}"
     if @sound.save
-      redirect_to @sound, notice: 'Sound was successfully created.'
+      redirect_to user_sounds_path(current_user.id), notice: 'Sound was successfully created.'
     else
       render :new
     end
@@ -40,7 +40,7 @@ class SoundsController < ApplicationController
   def update
     has_privilege?
     if @sound.update(sound_params)
-      redirect_to @sound, notice: 'Sound was successfully updated.'
+      redirect_to user_sound_path(current_user, @sound), notice: 'Sound was successfully updated.'
     else
       render :edit
     end
@@ -71,6 +71,6 @@ class SoundsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sound_params
-      params.require(:sound).permit(:name, :sound_url, :image_url, :genre, :description, :user_id_id)
+      params.require(:sound).permit(:name, :audio, :image, :genre, :description)
     end
 end
