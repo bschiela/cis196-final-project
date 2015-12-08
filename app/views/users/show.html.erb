@@ -20,24 +20,25 @@
 	</div>
 </div>
 
-<% if @user == current_user %>
-<div class="row">
-	<%= button_to 'New Sound', new_user_sound_path(@user), method: :get %>
-	<%= button_to 'New Playlist', '#', method: :get %>
-	<%= button_to 'New Event', '#', method: :get %>
-	<%= button_to 'New Story', '#', method: :get %>
-</div>
-<% end %>
-
-<div class="row">
-	<%= button_to 'Sounds', user_sounds_path(@user), { method: :get, class: :'button special' } %>
-	<%= button_to 'Playlists', '#', { method: :get, class: :'button special' } %>
-	<%= button_to 'Calendar', '#', { method: :get, class: :'button special' } %>
-	<%= button_to 'News', '#', { method: :get, class: :'button special' } %>
-</div>
-
-<% if (defined? content) %>
-	<div class="container">
-		<%= render content %>
+<div class="container">
+	<% if @user == current_user %>
+	<div class="row">
+		<%= button_to 'New Sound', new_user_sound_path(@user), method: :get %>
+		<%= button_to 'New Playlist', '#', method: :get %>
+		<%= button_to 'New Event', '#', method: :get %>
+		<%= button_to 'New Story', '#', method: :get %>
 	</div>
-<% end %>
+	<% end %>
+
+	<div class="row">
+		<%= button_to 'Sounds', user_sounds_path(@user), { method: :get, class: :'button special' } %>
+		<%= button_to 'Playlists', '#', { method: :get, class: :'button special' } %>
+		<%= button_to 'Calendar', '#', { method: :get, class: :'button special' } %>
+		<%= button_to 'News', '#', { method: :get, class: :'button special' } %>
+	</div>
+
+	<% if (defined? content) %>
+		<%= render content %>
+	<% end %>
+</div>
+
