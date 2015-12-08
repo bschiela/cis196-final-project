@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  # associations
+  has_many :sounds, dependent: :destroy
+
   # profile picture
   has_attached_file :image,
     styles: { medium: "300x300>", thumb: "100x100>" },

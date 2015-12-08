@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  resources :users
-
-  resources :sounds
+  resources :users do
+    resources :sounds
+  end
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
