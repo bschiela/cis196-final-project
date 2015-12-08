@@ -9,8 +9,6 @@
 <%= form_for(:sound, { method: verb, url: route }) do |f| %>
   <% if @sound.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@sound.errors.count, "error") %> prohibited this sound from being saved:</h2>
-
 		<ul>
     <% @sound.errors.full_messages.each do |message| %>
 			<li><font color=red><%= message %></font></li>
