@@ -1,67 +1,69 @@
 class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
-  # GET /playlists
-  # GET /playlists.json
+  # GET /users/:user_id/playlists
   def index
-    @playlists = Playlist.all
+    @user = User.find(params[:user_id])
+    render 'users/show.html', locals: { content: 'user_playlists' }
   end
 
-  # GET /playlists/1
-  # GET /playlists/1.json
+  # GET /users/:user_id/playlists/:id
   def show
+    render :show
   end
 
-  # GET /playlists/new
+  # GET /users/:user_id/playlists/new
   def new
     @playlist = Playlist.new
+    render :new
   end
 
-  # GET /playlists/1/edit
+  # GET /users/:user_id/playlists/:id/edit
   def edit
+    render :edit unless !has_privilege?
   end
 
-  # POST /playlists
-  # POST /playlists.json
+  # POST /users/:user_id/playlists
   def create
     @playlist = Playlist.new(playlist_params)
+    @playlist.user = current_user
 
-    respond_to do |format|
-      if @playlist.save
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
-        format.json { render :show, status: :created, location: @playlist }
-      else
-        format.html { render :new }
-        format.json { render json: @playlist.errors, status: :unprocessable_entity }
-      end
+    logger.debug "SAVING NEW PLAYLIST: #{@playlist.attributes.inspect}"
+    if @playlist.save
+      redirect_to user_playlists_path(current_user.id), notice: 'Playlist was successfully created.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /playlists/1
-  # PATCH/PUT /playlists/1.json
+  # PATCH/PUT /users/:user_id/playlists/:id
   def update
-    respond_to do |format|
-      if @playlist.update(playlist_params)
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }
-        format.json { render :show, status: :ok, location: @playlist }
-      else
-        format.html { render :edit }
-        format.json { render json: @playlist.errors, status: :unprocessable_entity }
-      end
+    has_privilege?
+    if @playlist.update(playlist_params)
+      redirect_to user_playlist_path(current_user, @playlist), notice: 'Playlist was successfully updated.'
+    else
+      render :edit
     end
   end
 
-  # DELETE /playlists/1
-  # DELETE /playlists/1.json
+  # DELETE /users/:user_id/playlists/:id
   def destroy
+    has_privilege?
     @playlist.destroy
-    respond_to do |format|
-      format.html { redirect_to playlists_url, notice: 'Playlist was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to user_playlists_path(current_user), notice: 'Playlist was successfully destroyed.'
   end
 
   private
+
+    # check user editing privileges
+    def has_privilege?
+      if (!logged_in?)
+        redirect_to '/login' and return
+      elsif (params[:user_id].to_i != current_user.id)
+        redirect_to user_playlists_path(current_user) and return
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_playlist
       @playlist = Playlist.find(params[:id])
@@ -69,6 +71,6 @@ class PlaylistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def playlist_params
-      params.require(:playlist).permit(:name, :description, :user_id)
+      params.require(:playlist).permit(:name, :description, :image)
     end
 end
