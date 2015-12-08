@@ -1,19 +1,25 @@
 <div class="container">
 	<br/>
 	<p id="notice"><font color=green><%= notice %></font></p>
+</div>
 
-	<div class="row">
-		<div class="image">
-			<%= image_tag @user.image.url %>
-		</div>
-		<div class="content">
-			<h2><%= @user.name %></h2>
-			<h5><%= @user.genres %></h5>
-			<p><%= @user.bio %></p>
-			<% if @user == current_user %>
-				<%= link_to 'Edit', edit_user_path, class: :button %><br/><br/>
-				<%= button_to 'Delete My Profile', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
-			<% end %>
-		</div>
-	
+<div class="row">
+	<div class="image">
+		<%= image_tag @user.image.url %>
+	</div>
+	<div class="content">
+		<h2><%= @user.name %></h2>
+		<h5><%= @user.genres %></h5>
+		<p><%= @user.bio %></p>
+		<% if @user == current_user %>
+			<%= link_to 'Edit', edit_user_path, class: :button %><br/><br/>
+			<%= button_to 'Delete My Profile', @user, { method: :delete, class: 'button special', data: { confirm: 'Are you sure?' } } %>
+		<% end %>
+	</div>
+</div>
+
+<div class="container">
+<% if @user == current_user %>
+	<%= button_to 'Add a Sound', new_user_sound_path(@user), method: :get %>
+<% end %>
 </div>
