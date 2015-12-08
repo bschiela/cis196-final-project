@@ -1,67 +1,69 @@
 class SoundsController < ApplicationController
   before_action :set_sound, only: [:show, :edit, :update, :destroy]
 
-  # GET /sounds
-  # GET /sounds.json
+  # GET /users/:user_id/sounds
   def index
-    @sounds = Sound.all
+    @sounds = User.find(params[:user_id]).sounds
+    render :index
   end
 
-  # GET /sounds/1
-  # GET /sounds/1.json
+  # GET /users/:user_id/sounds/:id
   def show
+    render :show
   end
 
-  # GET /sounds/new
+  # GET /users/:user_id/sounds/new
   def new
     @sound = Sound.new
+    render :new
   end
 
-  # GET /sounds/1/edit
+  # GET /users/:user_id/sounds/:id/edit
   def edit
+    render :edit unless !has_privilege?
   end
 
-  # POST /sounds
-  # POST /sounds.json
+  # POST /users/:user_id/sounds
   def create
     @sound = Sound.new(sound_params)
+    @sound.user = current_user
 
-    respond_to do |format|
-      if @sound.save
-        format.html { redirect_to @sound, notice: 'Sound was successfully created.' }
-        format.json { render :show, status: :created, location: @sound }
-      else
-        format.html { render :new }
-        format.json { render json: @sound.errors, status: :unprocessable_entity }
-      end
+    logger.debug "saving new Sound: #{@sound.attributes.inspect}"
+    if @sound.save
+      redirect_to @sound, notice: 'Sound was successfully created.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /sounds/1
-  # PATCH/PUT /sounds/1.json
+  # PATCH/PUT /users/:user_id/sounds/:id
   def update
-    respond_to do |format|
-      if @sound.update(sound_params)
-        format.html { redirect_to @sound, notice: 'Sound was successfully updated.' }
-        format.json { render :show, status: :ok, location: @sound }
-      else
-        format.html { render :edit }
-        format.json { render json: @sound.errors, status: :unprocessable_entity }
-      end
+    has_privilege?
+    if @sound.update(sound_params)
+      redirect_to @sound, notice: 'Sound was successfully updated.'
+    else
+      render :edit
     end
   end
 
-  # DELETE /sounds/1
-  # DELETE /sounds/1.json
+  # DELETE /users/:user_id/sounds/:id
   def destroy
+    has_privilege?
     @sound.destroy
-    respond_to do |format|
-      format.html { redirect_to sounds_url, notice: 'Sound was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to user_sounds_path(current_user), notice: 'Sound was successfully destroyed.'
   end
 
   private
+
+    # check user editing privileges
+    def has_privilege?
+      if (!logged_in?)
+        redirect_to '/login'
+      elsif (params[:user_id] != current_user.id)
+        redirect_to user_sounds_path(current_user)
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_sound
       @sound = Sound.find(params[:id])
