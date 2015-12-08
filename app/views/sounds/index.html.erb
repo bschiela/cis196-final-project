@@ -4,13 +4,18 @@
 
 <div class="container">
 	<h2>All Sounds</h2>
-	<table>
+
+	<table style="table-layout:fixed">
+		<col style="width:10%"/>
+		<col style="width:30%"/>
+		<col style="width:20%"/>
+		<col style="width:40%"/>
 		<thead>
 			<tr>
 				<th></th>
 				<th style="text-align:center">Sound</th>
-				<th>Artist</th>
-				<th>Description</th>
+				<th style="text-align:center">Artist</th>
+				<th style="text-align:center">Description</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,8 +26,8 @@
 					<%= link_to "#{sound.name}", user_sound_path(sound.user.id, sound.id) %><br/>
 					<audio preload="none" controls><source src="<%= sound.audio.url %>"/></audio>
 				</td>
-				<td style="vertical-align:middle"><%= link_to "#{sound.user.name}", sound.user %></td>
-				<td style="vertical-align:middle"><%= sound.description %></td>
+				<td style="vertical-align:middle; text-align:center"><%= link_to "#{sound.user.name}", sound.user %></td>
+				<td style="vertical-align:middle; word-wrap:break-word"><%= sound.description %></td>
 			</tr>
 		<% end %>
 		</tbody>

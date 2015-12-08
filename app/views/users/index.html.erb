@@ -3,16 +3,16 @@
 <div class="container">
 	<h2>Artists</h2>
 
-	<table>
-		<col width="110"/>
-		<col width="300"/>
-		<col width="600"/>
+	<table style="table-layout:fixed">
+		<col style="width:10%"/>
+		<col style="width:30%"/>
+		<col style="width:60%"/>
   	<tbody>
     	<% @users.each do |user| %>
 				<tr>
 					<td><%= image_tag user.image.url(:thumb), size: "80x80" %></td>
 					<td align='center' style="vertical-align:middle"><font size="5"><%= link_to "#{user.name}", user %></font></td>
-					<td style="vertical-align:middle"><%= user.bio %></td>
+					<td style="vertical-align:middle; word-wrap:break-word"><%= user.bio %></td>
       	</tr>
     	<% end %>
   	</tbody>
