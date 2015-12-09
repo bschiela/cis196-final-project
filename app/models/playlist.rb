@@ -1,6 +1,8 @@
 class Playlist < ActiveRecord::Base
   # associations
   belongs_to :user
+  has_many :playlists_sounds, dependent: :destroy
+  has_many :sounds, through: :playlists_sounds
 
   # associated image
   has_attached_file :image,
