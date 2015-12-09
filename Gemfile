@@ -44,6 +44,9 @@ gem 'aws-sdk', '< 2.0.0' # versions >= 3.0 have "Name error: uninitialized const
 # Use Dotenv to store aws credentials in environment variables
 gem 'dotenv-rails'
 
+# enale logging/static asset serving on Heroku
+gem 'rails_12factor', group: :production
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -60,3 +63,5 @@ group :development do
   gem 'spring'
 end
 
+# specify exact "ruby version"
+ruby '2.2.2'
