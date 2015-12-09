@@ -1,6 +1,7 @@
-<h1>Editing Story</h1>
+<div class="container">
+	<h2>Editing Story</h2>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Show', @story %> |
-<%= link_to 'Back', stories_path %>
+	<%= button_to 'Cancel', user_story_path(@story.user.id, @story.id), { method: :get } %>
+</div>

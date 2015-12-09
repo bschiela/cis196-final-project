@@ -12,7 +12,7 @@
 				<td><%= image_tag event.image.url, size: "80x80" %></td>
 				<td align="center" style="vertical-align:middle"><%= event.start_datetime %></td>
 				<td align="center" style="vertical-align:middle">
-					<%= link_to "#{event.name}", user_event_path(@user.id, event.id) %><br/>
+					<%= link_to "#{event.name}", user_event_path(@user.id, event.id) %>
 				</td>
 				<td style="vertical-align:middle; word-wrap:break-word"><%= event.description %></td>
 			</tr>

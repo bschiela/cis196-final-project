@@ -1,19 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<br/>
+	<p id="notice"><font color=green><%= notice %></font></p>
+</div>
 
-<p>
-  <strong>Headline:</strong>
-  <%= @story.headline %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @story.body %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @story.user %>
-</p>
-
-<%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Back', stories_path %>
+<div class="row">
+	<div class="image">
+		<%= image_tag @story.image.url, size: "300x300" %>
+	</div>
+	<div class="content">
+		<h2><%= @story.headline %></h2>
+		<h3>By: <%= link_to "#{@story.user.name}", user_path(@story.user) %> </h3>
+		<h4><%= @story.created_at %></h4>
+		<p><%= @story.body %></p>
+		<% if @story.user == current_user %>
+		<div class="row">
+			<%= link_to 'Edit', edit_user_story_path(@story.user.id, @story.id), class: :button %>
+			<%= button_to 'Delete This Story', user_story_path, { method: :delete, class: 'button special', data: { confirm: 'Are you sure?' } } %>
+		</div>
+		<% end %>
+	</div>
+</div>

@@ -1,29 +1,32 @@
-<%= form_for(@story) do |f| %>
-  <% if @story.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
+<% if @story.id %>
+	<% verb = :patch %>
+	<% route = user_story_path(@story.user.id, @story.id) %>
+<% else %>
+	<% verb = :post %>
+	<% route = user_stories_path(current_user) %>
+<% end %>
 
-      <ul>
-      <% @story.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= form_for(:story, { method: verb, url: route }) do |f| %>
+  <% if @story.errors.any? %>
+  <div id="error_explanation">
+		<ul>
+    <% @story.errors.full_messages.each do |message| %>
+			<li><font color=red><%= message %></font></li>
+    <% end %>
+    </ul>
+	</div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :headline %><br>
-    <%= f.text_field :headline %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_field :body %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.label :headline %>
+    <%= f.text_field :headline, value: @story.headline, placeholder: "Enter your story's headline here" %>
+
+		<%= f.label :image, 'Upload an image with this story (optional):'	%>
+    <%= f.file_field :image %>
+
+		<%= f.text_area :body, value: @story.body, placeholder: "Enter your story here" %>
+
+		<br/><br/>
+    <%= f.submit 'Save Story' %>
   </div>
 <% end %>

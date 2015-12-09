@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :sounds, dependent: :destroy
   has_many :playlists, dependent: :destroy
   has_many :events, dependent: :destroy
+  has_many :stories, dependent: :destroy
 
   # profile picture
   has_attached_file :image,

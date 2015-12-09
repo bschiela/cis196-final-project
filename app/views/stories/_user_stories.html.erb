@@ -1,0 +1,20 @@
+<% if @stories.size == 0 %>
+	<label>There are no stories here currently.</label>
+<% else %>
+	<table style="table-layout:fixed">
+		<col style="width:10%"/>
+		<col style="width:10%"/>
+		<col style="width:30%"/>
+		<tbody>
+		<% @stories.each do |story| %>
+			<tr>
+				<td><%= image_tag story.image.url, size: "80x80" %></td>
+				<td align="center" style="vertical-align:middle"><%= story.created_at %></td>
+				<td align="center" style="vertical-align:middle">
+					<%= link_to "#{story.headline}", user_story_path(@user.id, story.id) %>
+				</td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% end %>

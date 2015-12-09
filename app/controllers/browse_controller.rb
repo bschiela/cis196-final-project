@@ -14,7 +14,8 @@ class BrowseController < ApplicationController
 
   # GET /news
   def stories
-    # TODO
+    @stories = Story.order(created_at: :asc)
+    render :'stories/index'
   end
 
   # GET /calendar

@@ -25,7 +25,7 @@
 	<div class="row">
 		<%= button_to 'New Sound', new_user_sound_path(current_user), method: :get %>
 		<%= button_to 'New Playlist', new_user_playlist_path(current_user), method: :get %>
-		<%= button_to 'New Story', '#', method: :get %>
+		<%= button_to 'New Story', new_user_story_path(current_user), method: :get %>
 		<%= button_to 'New Event', new_user_event_path(current_user), method: :get %>
 	</div>
 	<% end %>
@@ -33,7 +33,7 @@
 	<div class="row">
 		<%= button_to 'Sounds', user_sounds_path(@user), { method: :get, class: (request.env['PATH_INFO'].end_with?('sounds') ? :'button special' : :'button alt') } %>
 		<%= button_to 'Playlists', user_playlists_path(@user), { method: :get, class: (request.env['PATH_INFO'].end_with?('playlists') ? :'button special' : :'button alt') } %>
-		<%= button_to 'News', '#', { method: :get, class: (request.env['PATH_INFO'].end_with?('stories') ? :'button special' : :'button alt') } %>
+		<%= button_to 'News', user_stories_path(@user), { method: :get, class: (request.env['PATH_INFO'].end_with?('stories') ? :'button special' : :'button alt') } %>
 		<%= button_to 'Calendar', user_events_path(@user), { method: :get, class: (request.env['PATH_INFO'].end_with?('events') ? :'button special' : :'button alt') } %>
 	</div>
 
