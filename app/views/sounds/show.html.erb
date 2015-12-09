@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="image">
-		<%= image_tag @sound.image.url %>
+		<%= image_tag @sound.image.url, size: "300x300" %>
 	</div>
 	<div class="content">
 		<h2>"<%= @sound.name %>" by <%= link_to "#{@sound.user.name}", user_path(@sound.user) %> </h2>
