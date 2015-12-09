@@ -1,0 +1,74 @@
+<div class="container">
+	<% total = @sounds.size + @users.size + @playlists.size %>
+	<label><font color=<%= total == 0 ? 'red' : 'green' %>>
+		Your search for "<%= @key %>" returned <%= total %> results.
+	</font></label>
+</div>
+
+<style>
+table {
+	table-layout:fixed;
+}
+td {
+	text-align:center;
+	vertical-align:middle;
+	word-wrap:break-word;
+}
+th {
+	text-align:center;
+}
+</style>
+
+<div class="container">
+	<h2>Artists (<%= @users.size %>)</h2>
+	<table>
+		<tr>
+			<th></th>
+			<th style="text-align:center">Name</th>
+			<th style="text-align:center">Genres</th>
+		</tr>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= image_tag user.image.url, size: "80x80" %></td>
+			<td><%= link_to "#{user.name}", user %></td>
+			<td><%= user.genres %></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
+
+<div class="container">
+	<h2>Sounds (<%= @sounds.size %>)</h2>
+	<table>
+		<tr>
+			<th></th>
+			<th style="text-align:center">Name</th>
+			<th style="text-align:center">Genres</th>
+		</tr>
+		<% @sounds.each do |sound| %>
+		<tr>
+			<td><%= image_tag sound.image.url, size: "80x80" %></td>
+			<td><%= link_to "#{sound.name}", user_sound_path(sound.user.id, sound.id) %></td>
+			<td><%= sound.genre %></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
+
+<div class="container">
+	<h2>Playlists (<%= @playlists.size %>)</h2>
+	<table>
+		<tr>
+			<th></th>
+			<th style="text-align:center">Name</th>
+			<th style="text-align:center">Description</th>
+		</tr>
+		<% @playlists.each do |playlist| %>
+		<tr>
+			<td><%= image_tag playlist.image.url, size: "80x80" %></td>
+			<td><%= link_to "#{playlist.name}", user_playlist_path(playlist.user.id, playlist.id) %></td>
+			<td><%= playlist.description %></td>
+		</tr>
+	<% end %>
+	</table>
+</div>

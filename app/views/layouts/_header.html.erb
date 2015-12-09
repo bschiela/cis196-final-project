@@ -1,4 +1,11 @@
-<header id='header' <%= request.env['PATH_INFO'] == '/' ? "class=alt" : "" %>>
-	<h1><a href='/'>Party Cat Records</a></h1>
-	<a href='#nav'>Menu</a>
+<header id="header" <%= request.env['PATH_INFO'] == '/' ? "class=alt" : "" %>>
+	<h1><a href="/">Party Cat Records</a></h1>
+	<a href='#nav' align="right">Menu</a>
+	<% if request.env['PATH_INFO'] == '/' %>
+		<form action="/search" method="get" align="left">
+			<input name="key" type="text" maxlength="50" style="width:500px; display:inline" placeholder="Search Sounds, Artists, Playlists, Genres..."/>
+			<input type="submit" class="button alt small" value="Search"/>
+		</form>
+	<% end %>
+
 </header>
