@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :sounds
     resources :playlists
+    resources :events
   end
 
   get '/sounds' => 'browse#sounds'
