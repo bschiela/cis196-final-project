@@ -1,8 +1,7 @@
-# TODO: homepage view once content uploaded
 # TODO: general layout and design formatting/tweaking
 # - TODO: limit long descriptions in tables (add story preview)
 # - TODO: format datetime select fields in form
 # - TODO: format datetime strings in fields (handle all dates better in general)
-# TODO: more rigorous validations / ensure error messages properly display
+# TODO: more rigorous validations / testing of error messages
 # TODO: separate edit forms for changing password/editing content/signing up/changing & deleting profile picture (link image)?
 # TODO: allow users to follow other users (send email notifications for news/event updates)
