@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209043118) do
+ActiveRecord::Schema.define(version: 20151209071132) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 20151209043118) do
   end
 
   add_index "playlists", ["user_id"], name: "index_playlists_on_user_id"
+
+  create_table "playlists_sounds", force: :cascade do |t|
+    t.integer "playlist_id"
+    t.integer "sound_id"
+  end
+
+  add_index "playlists_sounds", ["playlist_id"], name: "index_playlists_sounds_on_playlist_id"
+  add_index "playlists_sounds", ["sound_id"], name: "index_playlists_sounds_on_sound_id"
 
   create_table "sounds", force: :cascade do |t|
     t.string   "name"
