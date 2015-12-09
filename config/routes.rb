@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # get instead of post because of authenticity token issue
   get '/addToPlaylist' => 'playlists#addSound'
-  get '/removeFromPlaylist' => 'playlists#removeSound'
+  delete '/playlist/:playlist_id/sound/:sound_id' => 'playlists#removeSound'
 
   get '/sounds' => 'browse#sounds'
   get '/playlists' => 'browse#playlists'

@@ -29,7 +29,10 @@
 		<table style="table-layout:fixed">
 			<col style="width:10%"/>
 			<col style="width:30%"/>
-			<col style="width:60%"/>
+			<col style="width:40%"/>
+			<% if @playlist.user == current_user %>
+				<col style="width:20%"/>
+			<% end %>
 			<tbody>
 			<% @playlist.sounds.each do |sound| %>
 				<tr>
@@ -39,6 +42,11 @@
 						<audio preload="none" controls><source src="<%= sound.audio.url %>"/></audio>
 					</td>
 					<td style="vertical-align:middle; word-wrap:break-word"><%= sound.description %></td>
+					<% if @playlist.user == current_user %>
+					<td style="vertical-align:middle">
+						<%= button_to 'Remove', "/playlist/#{@playlist.id}/sound/#{sound.id}", { method: :delete, class: 'button small', data: { confirm: 'Are you sure?' } } %>
+					</td>
+					<% end %>
 				</tr>
 			<% end %>
 			</tbody>

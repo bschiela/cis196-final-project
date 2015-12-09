@@ -66,6 +66,17 @@ class PlaylistsController < ApplicationController
     end
   end
 
+  # DELETE /playlist/:playlist_id/sound/:sound_id
+  def removeSound
+    playlist = Playlist.find(params[:playlist_id])
+    sound = Sound.find(params[:sound_id])
+    if playlist.sounds.delete(sound)
+      redirect_to user_playlist_path(current_user.id, params[:playlist_id]), notice: 'Successfully removed sound from playlist.'
+    else
+      redirect_to user_playlist_path(current_user.id, params[:playlist_id]), alert: 'An error occurred'
+    end
+  end
+
   private
 
     # check user editing privileges
