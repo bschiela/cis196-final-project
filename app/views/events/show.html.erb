@@ -1,34 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<br/>
+	<p id="notice"><font color=green><%= notice %></font></p>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
-
-<p>
-  <strong>Start datetime:</strong>
-  <%= @event.start_datetime %>
-</p>
-
-<p>
-  <strong>End datetime:</strong>
-  <%= @event.end_datetime %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @event.user %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="row">
+	<div class="image">
+		<%= image_tag @event.image.url, size: "300x300" %>
+	</div>
+	<div class="content">
+		<h2><%= @event.name %></h2>
+		<h3>Hosted by: <%= link_to "#{@event.user.name}", user_path(@event.user) %> </h3>
+		<h4>When: <%= @event.start_datetime %></h4>
+		<% if @event.end_datetime %>
+			<h4> Until: <%= @event.end_datetime %></h4>
+		<% end %>
+		<h4>Where: <%= @event.location %></h4>
+		<p><%= @event.description %></p>
+		<% if @event.user == current_user %>
+		<div class="row">
+			<%= link_to 'Edit', edit_user_event_path(@event.user.id, @event.id), class: :button %>
+			<%= button_to 'Delete This Event', user_event_path, { method: :delete, class: 'button special', data: { confirm: 'Are you sure?' } } %>
+		</div>
+		<% end %>
+	</div>
+</div>

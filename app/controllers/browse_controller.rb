@@ -19,6 +19,7 @@ class BrowseController < ApplicationController
 
   # GET /calendar
   def events
-    # TODO
+    @events = Event.order(start_datetime: :asc)
+    render :'events/index'
   end
 end

@@ -1,6 +1,7 @@
-<h1>Editing Event</h1>
+<div class="container">
+	<h2>Editing Event</h2>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+	<%= button_to 'Cancel', user_event_path(@event.user.id, @event.id), { method: :get } %>
+</div>

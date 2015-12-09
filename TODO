@@ -1,4 +1,7 @@
 # TODO: homepage view once content uploaded
-# TODO: general layout and design formatting/tweaking (limit long descriptions in tables?)
+# TODO: general layout and design formatting/tweaking
+# - TODO: limit long descriptions in tables
+# - TODO: format datetime select fields in form
+# - TODO: format datetime strings in fields (handle all dates better in general)
 # TODO: more rigorous validations / ensure error messages properly display
 # TODO: separate edit forms for changing password/editing content/signing up/changing & deleting profile picture (link image)?

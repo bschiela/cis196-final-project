@@ -1,34 +1,22 @@
-<div class="container">
-	<p id="notice"><%= notice %></p>
-</div>
-
-<div class="container">
-	<h2>All Events</h2>
-
+<% if @events.size == 0 %>
+	<label>There are no events here currently.</label>
+<% else %>
 	<table style="table-layout:fixed">
 		<col style="width:10%"/>
+		<col style="width:10%"/>
 		<col style="width:20%"/>
-		<col style="width:30%"/>
-		<col style="width:40%"/>
-		<thead>
-			<tr>
-				<th></th>
-				<th style="text-align:center">Start</th>
-				<th style="text-align:center">Event</th>
-				<th style="text-align:center">Description</th>
-			</tr>
-		</thead>
+		<col style="width:60%"/>
 		<tbody>
 		<% @events.each do |event| %>
 			<tr>
 				<td><%= image_tag event.image.url, size: "80x80" %></td>
 				<td align="center" style="vertical-align:middle"><%= event.start_datetime %></td>
 				<td align="center" style="vertical-align:middle">
-					<%= link_to "#{event.name}", user_event_path(event.user.id, event.id) %><br/>
+					<%= link_to "#{event.name}", user_event_path(@user.id, event.id) %><br/>
 				</td>
 				<td style="vertical-align:middle; word-wrap:break-word"><%= event.description %></td>
 			</tr>
 		<% end %>
 		</tbody>
 	</table>
-</div>
+<% end %>

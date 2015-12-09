@@ -25,16 +25,16 @@
 	<div class="row">
 		<%= button_to 'New Sound', new_user_sound_path(current_user), method: :get %>
 		<%= button_to 'New Playlist', new_user_playlist_path(current_user), method: :get %>
-		<%= button_to 'New Event', '#', method: :get %>
 		<%= button_to 'New Story', '#', method: :get %>
+		<%= button_to 'New Event', new_user_event_path(current_user), method: :get %>
 	</div>
 	<% end %>
 
 	<div class="row">
 		<%= button_to 'Sounds', user_sounds_path(@user), { method: :get, class: :'button special' } %>
 		<%= button_to 'Playlists', user_playlists_path(@user), { method: :get, class: :'button special' } %>
-		<%= button_to 'Calendar', '#', { method: :get, class: :'button special' } %>
 		<%= button_to 'News', '#', { method: :get, class: :'button special' } %>
+		<%= button_to 'Calendar', user_events_path(@user), { method: :get, class: :'button special' } %>
 	</div>
 
 	<% if (defined? content) %>

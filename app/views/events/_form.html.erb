@@ -1,41 +1,46 @@
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<% if @event.id %>
+	<% verb = :patch %>
+	<% route = user_event_path(@event.user.id, @event.id) %>
+<% else %>
+	<% verb = :post %>
+	<% route = user_events_path(current_user) %>
+<% end %>
 
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= form_for(:event, { method: verb, url: route }) do |f| %>
+  <% if @event.errors.any? %>
+  <div id="error_explanation">
+		<ul>
+    <% @event.errors.full_messages.each do |message| %>
+			<li><font color=red><%= message %></font></li>
+    <% end %>
+    </ul>
+	</div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :start_datetime %><br>
-    <%= f.datetime_select :start_datetime %>
-  </div>
-  <div class="field">
-    <%= f.label :end_datetime %><br>
-    <%= f.datetime_select :end_datetime %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.label :name %>
+    <%= f.text_field :name, value: @event.name, placeholder: 'Name your event:' %>
+
+		<%= f.label :image, 'Upload an image with this event (optional):'	%>
+    <%= f.file_field :image %>
+
+		<%= f.label :location %>
+		<%= f.text_field :location, value: @event.location, placeholder: 'Where will this event take place?' %>
+
+		<div class="row">
+			<%= f.label :start_datetime, 'Starting time:' %>
+			<%= f.datetime_select :start_datetime, { default: @event.start_datetime, start_year: Date.current.year }, { style: :'width:auto' } %>
+		</div>
+
+		<div class="row">
+			<%= f.label :end_datetime, 'Ending time:' %>
+			<%= f.datetime_select :end_datetime, { default: @event.end_datetime, include_blank: true, start_year: Date.current.year }, { style: :'width:auto' } %>
+		</div>
+
+    <%= f.label :description %>
+    <%= f.text_area :description, value: @event.description, placeholder: 'Describe this event:' %>
+
+		<br/><br/>
+    <%= f.submit 'Save Event' %>
   </div>
 <% end %>
