@@ -18,102 +18,56 @@
 				<p id='notice'><font color=green><%= notice %></font></p>
 			</div>
 
-		<!-- One -->
-			<section id="one" class="wrapper style1">
-				<div class="inner">
-					<article class="feature left">
-						<span class="image"><img src="images/pic01.jpg" alt="" /></span>
-						<div class="content">
-							<h2>Integer vitae libero acrisus egestas placerat  sollicitudin</h2>
-							<p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est.</p>
-							<ul class="actions">
-								<li>
-									<a href="#" class="button alt">More</a>
-								</li>
-							</ul>
-						</div>
-					</article>
-					<article class="feature right">
-						<span class="image"><img src="images/pic02.jpg" alt="" /></span>
-						<div class="content">
-							<h2>Integer vitae libero acrisus egestas placerat  sollicitudin</h2>
-							<p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est.</p>
-							<ul class="actions">
-								<li>
-									<a href="#" class="button alt">More</a>
-								</li>
-							</ul>
-						</div>
-					</article>
-				</div>
-			</section>
-
-		<!-- Two -->
-			<section id="two" class="wrapper special">
+			<section id="artists" class="wrapper special">
 				<div class="inner">
 					<header class="major narrow">
-						<h2>Aliquam Blandit Mauris</h2>
-						<p>Ipsum dolor tempus commodo turpis adipiscing Tempor placerat sed amet accumsan</p>
+						<h2>Featured Artists</h2>
+						<!--<p>These are our featured artists</p>-->
 					</header>
 					<div class="image-grid">
-						<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
-						<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
-						<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-						<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-						<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-						<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-						<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-						<a href="#" class="image"><img src="images/pic10.jpg" alt="" /></a>
+						<% @users.each do |user| %>
+							<a href='<%= user_path(user) %>' class="image"><img src="<%= user.image.url %>"/></a>
+						<% end %>
 					</div>
 					<ul class="actions">
-						<li><a href="#" class="button big alt">Tempus Aliquam</a></li>
+						<li><a href="/users" class="button big alt">Browse All Artists</a></li>
 					</ul>
 				</div>
 			</section>
 
-		<!-- Three -->
-			<section id="three" class="wrapper style3 special">
-				<div class="inner">
-					<header class="major narrow	">
-						<h2>Magna sed consequat tempus</h2>
-						<p>Ipsum dolor tempus commodo turpis adipiscing Tempor placerat sed amet accumsan</p>
-					</header>
-					<ul class="actions">
-						<li><a href="#" class="button big alt">Magna feugiat</a></li>
-					</ul>
-				</div>
-			</section>
-
-		<!-- Four -->
-			<section id="four" class="wrapper style2 special">
+			<section id="sounds" class="wrapper special">
 				<div class="inner">
 					<header class="major narrow">
-						<h2>Get in touch</h2>
-						<p>Ipsum dolor tempus commodo adipiscing</p>
+						<h2>Featured Sounds</h2>
+						<!--<p>These are our featured sounds</p>-->
 					</header>
-					<form action="#" method="POST">
-						<div class="container 75%">
-							<div class="row uniform 50%">
-								<div class="6u 12u$(xsmall)">
-									<input name="name" placeholder="Name" type="text" />
-								</div>
-								<div class="6u$ 12u$(xsmall)">
-									<input name="email" placeholder="Email" type="email" />
-								</div>
-								<div class="12u$">
-									<textarea name="message" placeholder="Message" rows="4"></textarea>
-								</div>
-							</div>
-						</div>
-						<ul class="actions">
-							<li><input type="submit" class="special" value="Submit" /></li>
-							<li><input type="reset" class="alt" value="Reset" /></li>
-						</ul>
-					</form>
+					<div class="image-grid">
+						<% @sounds.each do |sound| %>
+							<a href='<%= user_sound_path(sound.user.id, sound.id) %>' class="image"><img src="<%= sound.image.url %>"/></a>
+						<% end %>
+					</div>
+					<ul class="actions">
+						<li><a href="/sounds" class="button big alt">Browse All Sounds</a></li>
+					</ul>
 				</div>
 			</section>
 
-
+			<section id="playlists" class="wrapper special">
+				<div class="inner">
+					<header class="major narrow">
+						<h2>Featured Playlists</h2>
+						<!--<p>These are our featured playlists</p>-->
+					</header>
+					<div class="image-grid">
+						<% @playlists.each do |playlist| %>
+							<a href='<%= user_playlist_path(playlist.user.id, playlist.id) %>' class="image"><img src="<%= playlist.image.url %>"/></a>
+						<% end %>
+					</div>
+					<ul class="actions">
+						<li><a href="/playlists" class="button big alt">Browse All Playlists</a></li>
+					</ul>
+				</div>
+			</section>
 
 	</body>
 </html>
