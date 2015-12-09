@@ -1,0 +1,20 @@
+<% if @user.playlists.size == 0 %>
+	<label>There are no playlists here currently.</label>
+<% else %>
+	<table style="table-layout:fixed">
+		<col style="width:10%"/>
+		<col style="width:30%"/>
+		<col style="width:60%"/>
+		<tbody>
+		<% @user.playlists.each do |playlist| %>
+			<tr>
+				<td><%= image_tag playlist.image.url, size: "80x80" %></td>
+				<td align="center" style="vertical-align:middle">
+					<%= link_to "#{playlist.name}", user_playlist_path(@user.id, playlist.id) %>
+				</td>
+				<td style="vertical-align:middle; word-wrap:break-word"><%= playlist.description %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% end %>

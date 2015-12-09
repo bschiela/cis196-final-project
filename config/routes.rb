@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   end
 
   get '/sounds' => 'browse#sounds'
+  get '/playlists' => 'browse#playlists'
+  get '/news' => 'browse#stories'
+  get '/calendar' => 'browse#events'
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'

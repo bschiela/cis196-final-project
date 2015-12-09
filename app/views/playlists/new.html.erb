@@ -1,5 +1,8 @@
-<h1>New Playlist</h1>
+<div class="container">
+	<br/>
+	<h2>New Playlist</h2>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Back', playlists_path %>
+	<%= link_to 'Cancel', user_playlists_path(current_user) %>
+</div>

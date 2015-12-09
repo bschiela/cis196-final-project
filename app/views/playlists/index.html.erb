@@ -1,31 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<p id="notice"><%= notice %></p>
+</div>
 
-<h1>Listing Playlists</h1>
+<div class="container">
+	<h2>All Playlists</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @playlists.each do |playlist| %>
-      <tr>
-        <td><%= playlist.name %></td>
-        <td><%= playlist.description %></td>
-        <td><%= playlist.user %></td>
-        <td><%= link_to 'Show', playlist %></td>
-        <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
-        <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Playlist', new_playlist_path %>
+	<table style="table-layout:fixed">
+		<col style="width:10%"/>
+		<col style="width:30%"/>
+		<col style="width:20%"/>
+		<col style="width:40%"/>
+		<thead>
+			<tr>
+				<th></th>
+				<th style="text-align:center">Playlist</th>
+				<th style="text-align:center">Owner</th>
+				<th style="text-align:center">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @playlists.each do |playlist| %>
+			<tr>
+				<td><%= image_tag playlist.image.url, size: "80x80" %></td>
+				<td align="center" style="vertical-align:middle">
+					<%= link_to "#{playlist.name}", user_playlist_path(playlist.user.id, playlist.id) %><br/>
+				</td>
+				<td style="vertical-align:middle; text-align:center"><%= link_to "#{playlist.user.name}", playlist.user %></td>
+				<td style="vertical-align:middle; word-wrap:break-word"><%= playlist.description %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>

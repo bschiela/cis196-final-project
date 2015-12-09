@@ -1,29 +1,33 @@
-<%= form_for(@playlist) do |f| %>
-  <% if @playlist.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
+<% if @playlist.id %>
+	<% verb = :patch %>
+	<% route = user_playlist_path(@playlist.user.id, @playlist.id) %>
+<% else %>
+	<% verb = :post %>
+	<% route = user_playlists_path(current_user) %>
+<% end %>
 
-      <ul>
-      <% @playlist.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= form_for(:playlist, { method: verb, url: route }) do |f| %>
+  <% if @playlist.errors.any? %>
+  <div id="error_explanation">
+		<ul>
+    <% @playlist.errors.full_messages.each do |message| %>
+			<li><font color=red><%= message %></font></li>
+    <% end %>
+    </ul>
+	</div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.label :name %>
+    <%= f.text_field :name, value: @playlist.name, placeholder: 'Name your playlist:' %>
+
+		<%= f.label :image, 'Upload an image with this playlist (optional):'	%>
+    <%= f.file_field :image %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description, value: @playlist.description, placeholder: 'Describe this playlist:' %>
+
+		<br/><br/>
+    <%= f.submit 'Save Playlist' %>
   </div>
 <% end %>

@@ -1,19 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<br/>
+	<p id="notice"><font color=green><%= notice %></font></p>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @playlist.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @playlist.description %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @playlist.user %>
-</p>
-
-<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
-<%= link_to 'Back', playlists_path %>
+<div class="row">
+	<div class="image">
+		<%= image_tag @playlist.image.url %>
+	</div>
+	<div class="content">
+		<h2>"<%= @playlist.name %>" by <%= link_to "#{@playlist.user.name}", user_path(@playlist.user) %> </h2>
+		<p><%= @playlist.description %></p>
+		<% if @playlist.user == current_user %>
+		<div class="row">
+			<%= link_to 'Edit', edit_user_playlist_path(@playlist.user.id, @playlist.id), class: :button %>
+			<%= button_to 'Delete This Playlist', user_playlist_path, { method: :delete, class: 'button special', data: { confirm: 'Are you sure?' } } %>
+		</div>
+		<% end %>
+	</div>
+</div>

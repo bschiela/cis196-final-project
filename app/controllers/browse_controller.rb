@@ -8,7 +8,8 @@ class BrowseController < ApplicationController
 
   # GET /playlists
   def playlists
-    # TODO
+    @playlists = Playlist.all
+    render :'playlists/index'
   end
 
   # GET /news
