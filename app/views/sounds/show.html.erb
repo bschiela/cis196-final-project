@@ -1,6 +1,7 @@
 <div class="container">
 	<br/>
 	<p id="notice"><font color=green><%= notice %></font></p>
+	<p id="error"><font color=red><%= alert %></font></p>
 </div>
 
 <div class="row">
@@ -12,11 +13,31 @@
 		<h5><%= @sound.genre %></h5>
 		<audio preload="auto" controls><source src="<%= @sound.audio.url %>"/></audio>
 		<p><%= @sound.description %></p>
+
+		<% if logged_in? %>
+			<% if current_user.playlists.size > 0 %>
+			<form action="/addToPlaylist" method="get">
+				<div class="row">
+					<select name="playlist_id" style="width:auto" required>
+						<% current_user.playlists.each do |playlist| %>
+							<option value="<%= playlist.id %>"><%= playlist.name %></option>
+						<% end %>
+					</select>
+					<input type="hidden" name="sound_id" value=<%= @sound.id %>/>
+					<input type="submit" value="Add to Playlist"/>
+				</div>
+			</form>
+			<% else %>
+				<label><%= link_to 'Create a Playlist', new_user_playlist_path(current_user) %> to add this sound to.</label>
+			<% end %>
+		<% end %>
+
 		<% if @sound.user == current_user %>
 		<div class="row">
-			<%= link_to 'Edit', edit_user_sound_path(@sound.user.id, @sound.id), class: :button %>
+			<%= button_to 'Edit', edit_user_sound_path(@sound.user.id, @sound.id), { method: :get } %>
 			<%= button_to 'Delete This Sound', user_sound_path, { method: :delete, class: 'button special', data: { confirm: 'Are you sure?' } } %>
 		</div>
 		<% end %>
+
 	</div>
 </div>

@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     resources :stories
   end
 
+  # get instead of post because of authenticity token issue
+  get '/addToPlaylist' => 'playlists#addSound'
+  get '/removeFromPlaylist' => 'playlists#removeSound'
+
   get '/sounds' => 'browse#sounds'
   get '/playlists' => 'browse#playlists'
   get '/stories' => 'browse#stories'

@@ -1,5 +1,6 @@
 class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token, :only => :create
 
   # GET /users/:user_id/playlists
   def index
@@ -51,6 +52,18 @@ class PlaylistsController < ApplicationController
     has_privilege?
     @playlist.destroy
     redirect_to user_playlists_path(current_user), notice: 'Playlist was successfully destroyed.'
+  end
+
+  # GET /playlist (not post because authenticity token issue)
+  def addSound
+    playlist = Playlist.find(params[:playlist_id])
+    @sound = Sound.find(params[:sound_id])
+    if playlist.sounds.include? @sound
+      redirect_to user_sound_path(@sound.user.id, @sound.id), alert: "This sound is already in #{playlist.name}"
+    else
+      playlist.sounds.push(@sound)
+      redirect_to user_sound_path(@sound.user.id, @sound.id), notice: "Sound successfully added to #{playlist.name}."
+    end
   end
 
   private
